@@ -17,17 +17,15 @@ class PaymentController extends AbstractController
         $this->paymentService = $paymentService;
     }
 
-    #[Route('/payment/process/{provider}', name: 'process_payment', methods: ['POST'])]
+    #[Route('/payment/process/{provider}', name: 'process_payment', methods: ['GET'])]
     public function processPayment(Request $request, string $provider): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-
-        $amount = (float) $data['amount'];
-        $currency = $data['currency'];
-        $cardNumber = $data['card_number'];
-        $cardExpYear = (int) $data['card_exp_year'];
-        $cardExpMonth = (int) $data['card_exp_month'];
-        $cardCvv = $data['card_cvv'];
+        $amount = (float) $request->query->get('amount');
+        $currency = $request->query->get('currency');
+        $cardNumber = $request->query->get('card_number');
+        $cardExpMonth = (int) $request->query->get('card_exp_month');
+        $cardExpYear = (int) $request->query->get('card_exp_year');
+        $cardCvv = $request->query->get('card_cvv');
 
         if (!$amount) {
             return new JsonResponse([

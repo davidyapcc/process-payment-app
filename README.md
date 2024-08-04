@@ -71,7 +71,7 @@ docker-compose exec app ./vendor/bin/phpunit tests/Service/PaymentServiceTest.ph
 `/payment/process/{provider}`
 
 ### Method
-`POST`
+`GET`
 
 ### Description
 This endpoint processes a payment through the specified provider (either ACI or Shift4).
@@ -79,7 +79,7 @@ This endpoint processes a payment through the specified provider (either ACI or 
 ### URL Parameters
 - `provider` (required): The payment provider. Possible values: `aci`, `shift4`.
 
-### Request Body Parameters
+### Query Parameters
 - `amount` (required): The amount to be charged. Example: `499`
 - `currency` (required): The currency code. Example: `USD`
 - `card_number` (required): The card number. Example: `4242424242424242`
@@ -89,16 +89,7 @@ This endpoint processes a payment through the specified provider (either ACI or 
 
 ### Example Request
 ```
-curl -X POST 'http://localhost:9000/payment/process/shift4' \
-     -H 'Content-Type: application/json' \
-     -d '{
-           "amount": 499,
-           "currency": "USD",
-           "card_number": "4242424242424242",
-           "card_exp_month": 12,
-           "card_exp_year": 2025,
-           "card_cvv": "123"
-         }'
+curl -X GET 'http://localhost:9000/payment/process/shift4?amount=499&currency=USD&card_number=4242424242424242&card_exp_month=12&card_exp_year=2025&card_cvv=123'
 ```
 
 ### Example Response

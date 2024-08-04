@@ -106,14 +106,14 @@ curl -X POST 'http://localhost:9000/payment/process/shift4' \
 {
     "transactionId": "char_ORVCrwOrTkGsDwM3H50OIW7Q",
     "dateOfCreation": "2024-08-02 04:37:15",
-    "amount": 499,
+    "amount": "499",
     "currency": "USD",
     "cardBin": "424242"
 }
 ```
 
 ### Response Codes
-```bash
+```
 200 OK: The payment was processed successfully.
 400 Bad Request: Invalid input parameters.
 500 Internal Server Error: An error occurred while processing the payment.
@@ -148,14 +148,14 @@ php bin/console app:process-payment shift4 --amount=499 --currency=USD --card_nu
 {
     "transactionId": "char_ORVCrwOrTkGsDwM3H50OIW7Q",
     "dateOfCreation": "2024-08-02 04:37:15",
-    "amount": 499,
+    "amount": "499",
     "currency": "USD",
     "cardBin": "424242"
 }
 ```
 
 ### Response Codes
-```bash
+```
 0: The payment was processed successfully.
 1: Invalid input parameters or an error occurred while processing the payment.
 ```

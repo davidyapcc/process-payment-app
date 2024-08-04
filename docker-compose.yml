@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: process_payment_app
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: process_payment_webserver
+    ports:
+      - "9000:80"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - app
